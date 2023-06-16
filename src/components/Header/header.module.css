@@ -1,0 +1,24 @@
+.header {
+
+  height: 80px;
+  background-color: #ffffff;
+}
+
+.title {
+  margin-right: auto;
+}
+
+.link {
+  margin-top: 2rem;
+  text-decoration: none;
+  color: rgb(0, 110, 255);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.line {
+  margin-top: 5px;
+  height: 1.25px;
+  width: 100%;
+  background-color: rgba(184, 184, 184, 0.425);
+}

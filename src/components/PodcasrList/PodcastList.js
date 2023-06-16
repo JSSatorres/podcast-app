@@ -1,24 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './podcastList.module.css'
 import PodcastCard from '../PodcastCard/PodcastCard'
-import { getAllPodcasts } from '../../services/podcastService'
+import usePodcasts from '../../hook/useGetAllPodcast'
 
 const PodcastList = () => {
-  const [podcasts, setPodcasts] = useState([])
-  console.log(podcasts)
-  useEffect(() => {
-    const getPodcasts = async () => {
-      try {
-        const fetchedPodcasts = await getAllPodcasts()
-        setPodcasts(fetchedPodcasts)
-      } catch (error) {
-        console.log('Error fetching podcasts:', error)
-      }
-    }
-
-    getPodcasts()
-  }, [])
-
+  const podcasts = usePodcasts()
   return (
     <div className={styles.container}>
       {podcasts && podcasts.map(podcast => (

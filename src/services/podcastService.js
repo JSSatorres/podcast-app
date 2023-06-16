@@ -10,7 +10,7 @@ export const getAllPodcasts = async () => {
       name: podcast?.['im:name']?.label,
       category: podcast?.category?.attributes?.label,
       author: podcast?.['im:artist']?.label,
-      img: podcast?.['im:image']?.[2]?.label,
+      image: podcast?.['im:image']?.[2]?.label,
       summary: podcast?.summary?.label
     }))
 

@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './podcastList.module.css'
 import PodcastCard from '../PodcastCard/PodcastCard'
-import usePodcasts from '../../hook/useGetAllPodcast'
+import useGetAllPodcast from '../../hook/useGetAllPodcast'
+import Search from '../Search/Search'
 
 const PodcastList = () => {
-  const podcasts = usePodcasts()
+  const [search, setSearch] = useState('')
+  const podcasts = useGetAllPodcast()
+
+  const handleChange = (inputData) => {
+    setSearch(inputData)
+  }
+
+  const filteredPodcasts = podcasts.filter((podcast) =>
+    podcast.name.toLowerCase().includes(search.toLowerCase()) ||
+    podcast.author.toLowerCase().includes(search.toLowerCase())
+  )
+
   return (
-    <div className={styles.container}>
-      {podcasts && podcasts.map(podcast => (
-        <PodcastCard podcast={podcast} key={podcast.id} />
-      ))}
-    </div>
+    <>
+      <Search handleChange={handleChange} />
+      <div className={styles.container}>
+        {podcasts && filteredPodcasts && filteredPodcasts.map(podcast => (
+          <PodcastCard podcast={podcast} key={podcast.id} />
+        ))}
+      </div>
+    </>
   )
 }
 

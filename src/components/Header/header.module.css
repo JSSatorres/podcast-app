@@ -1,10 +1,10 @@
 .header {
-
   height: 80px;
   background-color: #ffffff;
+  
 }
-
-.title {
+.container_elements {
+  display: flex;
   margin-right: auto;
 }
 
@@ -21,4 +21,12 @@
   height: 1.25px;
   width: 100%;
   background-color: rgba(184, 184, 184, 0.425);
+}
+.circle {
+  margin-left: auto;
+  margin-top: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: blue;
+  border-radius: 50%;
 }

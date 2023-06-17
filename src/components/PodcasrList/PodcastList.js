@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import styles from './podcastList.module.css'
 import PodcastCard from '../PodcastCard/PodcastCard'
-import useGetAllPodcast from '../../hook/useGetAllPodcast'
+import usePodcasts from '../../hook/useGetAllPodcast'
 import Search from '../Search/Search'
 
 const PodcastList = () => {
   const [search, setSearch] = useState('')
-  const podcasts = useGetAllPodcast()
+  const podcasts = usePodcasts()
 
   const handleChange = (inputData) => {
     setSearch(inputData)

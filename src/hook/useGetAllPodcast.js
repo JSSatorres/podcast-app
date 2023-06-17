@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { getAllPodcasts } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
+import { useLoadingContext } from './useLoadingContext'
 
 const useGetAllPodcast = () => {
+  const { isLoading, setStateLoading } = useLoadingContext()
+  setStateLoading(true)
+  console.log(isLoading)
   const [podcasts, setPodcasts] = useState([])
 
   useEffect(() => {
@@ -32,7 +36,9 @@ const useGetAllPodcast = () => {
         console.log(`Error getting podcasts: ${error}`)
       })
   }, [])
-  console.log(podcasts)
+  setStateLoading(false)
+  console.log(isLoading)
+
   return podcasts
 }
 

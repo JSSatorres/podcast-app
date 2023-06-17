@@ -1,40 +1,44 @@
-.podcast-card {
-  width: 16rem;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-radius: 0.375rem;
-  overflow: hidden;
-  position: relative;
+.card {
+  width: 13rem;
+  text-align: center;
 }
 
-.podcast-image {
-  background-color: #d1d5db;
-  height: 4rem;
-  width: 4rem;
-  border-radius: 9999px;
-  position: absolute;
-  top: -2rem;
-  left: 50%;
-  transform: translateX(-50%);
+.card_image {
+  margin: auto;
+  height: 8rem;
+  width: 8rem;
+  transform: translate(0%, 60%);
+  z-index: 1;
 }
 
-.podcast-image-inner {
+.img_card {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.podcast-details {
+.card_description {
+  background-color:rgb(252, 252, 252) ;
   padding: 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  box-shadow: 
+  0px -4px 8px rgba(0, 0, 0, 0.2),
+  2px 2px 4px rgba(0, 0, 0, 0.2),
+  -2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.podcast-name {
-  font-size: 1.25rem;
-  font-weight: 700;
+
+.card_name {
+  margin-top: 4.5rem;
+  font-size: 1rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
-.podcast-author {
+.card_author {
+  margin-top: -0.6rem;
   font-size: 0.875rem;
   text-transform: lowercase;
 }

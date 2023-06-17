@@ -1,0 +1,57 @@
+.card {
+  width: 13rem;
+  background-color:rgb(252, 252, 252) ;
+  border-radius: 0.25rem;
+  box-shadow: 
+  0px -4px 8px rgba(0, 0, 0, 0.2),
+  2px 2px 4px rgba(0, 0, 0, 0.2),
+  -2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card_image {
+  margin: auto;
+  height: 9rem;
+  width: 9rem;
+  margin-bottom: 2rem;
+}
+
+img {
+  margin-top: 0.6rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+
+}
+
+.card_description {
+  background-color:rgb(252, 252, 252) ;
+  padding: 0.4rem;
+  margin-bottom: -0.5rem;
+ 
+}
+
+.card_name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-left: 0.3rem;
+}
+
+.card_author {
+  margin-top: -0.8rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-left: 0.3rem;
+}
+.title_description {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-style: bold;
+}
+.description {
+  margin-top: -0.2rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  overflow: hidden;
+  word-wrap: break-word;
+}

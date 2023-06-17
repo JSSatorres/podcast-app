@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getAllPodcasts } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
 
-const usePodcasts = () => {
+const useGetAllPodcast = () => {
   const [podcasts, setPodcasts] = useState([])
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const usePodcasts = () => {
         console.log(`Error getting podcasts: ${error}`)
       })
   }, [])
-
+  console.log(podcasts)
   return podcasts
 }
 
-export default usePodcasts
+export default useGetAllPodcast

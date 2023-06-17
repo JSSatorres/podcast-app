@@ -1,17 +1,43 @@
-export const getAllPodcasts = async () => {
-  const url = 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
+import { URL_PODCAST_ALL, URL_PODCAST_BY_ID, CORS_ACCESS } from '../utils/constants'
 
+export const getPodcastById = async (podcastId) => {
+  console.log(podcastId)
   try {
-    const response = await fetch(url)
+    const response = await fetch(`${CORS_ACCESS}${URL_PODCAST_BY_ID}${podcastId}`, {
+      headers: {
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Authorization',
+        'Access-Control-Allow-Origin': 'http://localhost:3000'
+      }
+    })
+    const data = await response.json()
+    const podcastD = data.results[0]
+    const podcast = {
+      id: podcastD?.trackId,
+      name: podcastD?.trackName,
+      feedUrl: podcastD?.feedUrl,
+      artistName: podcastD?.artistName,
+      artwork: podcastD?.artworkUrl600
+    }
+
+    return podcast
+  } catch (error) {
+    console.log(`Error at fetching podcast: ${error}`)
+    throw error
+  }
+}
+
+export const getAllPodcasts = async () => {
+  try {
+    const response = await fetch(URL_PODCAST_ALL)
     const data = await response.json()
 
     const podcasts = data.feed.entry.map(podcast => ({
       id: podcast?.id?.attributes?.['im:id'],
       name: podcast?.['im:name']?.label,
-      category: podcast?.category?.attributes?.label,
       author: podcast?.['im:artist']?.label,
       image: podcast?.['im:image']?.[2]?.label,
-      summary: podcast?.summary?.label
+      description: podcast?.summary?.label
     }))
 
     return podcasts

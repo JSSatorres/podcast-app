@@ -12,17 +12,22 @@ const PodcastList = ({ podcast }) => {
   }
 
   return (
-    <button type='button' onClick={() => handleclick(podcast)}>
-      <div className={styles['podcast-card']}>
-        <div className={styles['podcast-image']}>
-          <img src={podcast.image} alt={podcast.name} className={styles['podcast-image-inner']} />
-        </div>
-        <div className={styles['podcast-details']}>
-          <h2 className={styles['podcast-name']}>{podcast.name}</h2>
-          <p className={styles['podcast-author']}>Author: {podcast.author}</p>
-        </div>
+
+    <div className={styles.card}>
+      <div className={styles.card_image}>
+        <img
+          src={podcast?.image}
+          alt={podcast?.name}
+          onClick={() => handleclick(podcast)}
+          className={styles.img_card}
+        />
       </div>
-    </button>
+      <div className={styles.card_description} onClick={() => handleclick(podcast)}>
+        <h2 className={styles.card_name}>{podcast?.name}</h2>
+        <p className={styles.card_author}>Author: {podcast?.author}</p>
+      </div>
+    </div>
+
   )
 }
 

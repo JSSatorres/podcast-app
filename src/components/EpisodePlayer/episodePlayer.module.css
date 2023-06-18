@@ -1,0 +1,15 @@
+.audioPlayer {
+  margin-top: 1rem;
+  height: 1.5rem;
+  width: 95%;
+  padding: 20px;
+  border-radius: 5px;
+  color: #000000;
+}
+.audioPlayer audio::-webkit-media-controls-panel {
+  display: none !important;
+}
+.audioElement {
+  background-color: #741a1a;
+  color: #000000;
+}

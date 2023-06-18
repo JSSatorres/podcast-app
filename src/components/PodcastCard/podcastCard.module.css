@@ -1,9 +1,9 @@
 .card {
-  width: 13rem;
+  width:18rem;
   text-align: center;
 }
 
-.card_image {
+.cardImage {
   margin: auto;
   height: 8rem;
   width: 8rem;
@@ -11,33 +11,30 @@
   z-index: 1;
 }
 
-.img_card {
+.imgCard {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.card_description {
-  background-color:rgb(252, 252, 252) ;
+.cardDescription {
   padding: 1rem;
   cursor: pointer;
   border-radius: 0.25rem;
-  box-shadow: 
-  0px -4px 8px rgba(0, 0, 0, 0.2),
-  2px 2px 4px rgba(0, 0, 0, 0.2),
-  -2px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow-thin);
+  background-color:var(--color-light) ;
 }
 
 
-.card_name {
-  margin-top: 4.5rem;
+.cardName {
+  margin-top: 5rem;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.card_author {
+.cardAuthor {
   margin-top: -0.6rem;
   font-size: 0.875rem;
   text-transform: lowercase;

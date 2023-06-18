@@ -6,17 +6,17 @@ const Table = ({ episodes, handleEpisode }) => {
     <table className={styles.tabla}>
       <thead>
         <tr>
-          <th>Title</th>
+          <th className={styles.firstColumn}>Title</th>
           <th>Date</th>
-          <th>Duration</th>
+          <th className={styles.centerAlign}>Duration</th>
         </tr>
       </thead>
       <tbody>
         {episodes.map((episode, index) => (
           <tr key={index} onClick={() => handleEpisode(episode.id)}>
-            <td>{episode.title}</td>
+            <td className={styles.title}>{episode.title}</td>
             <td>{episode.date}</td>
-            <td>{episode.duration}</td>
+            <td className={styles.centerAlign}>{episode.duration}</td>
           </tr>
         ))}
       </tbody>

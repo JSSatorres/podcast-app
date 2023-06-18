@@ -4,12 +4,11 @@ import { getHoursDiff } from '../utils/getDifHours'
 import { useLoadingContext } from './useLoadingContext'
 
 const useGetAllPodcast = () => {
-  const { isLoading, setStateLoading } = useLoadingContext()
-  setStateLoading(true)
-  console.log(isLoading)
   const [podcasts, setPodcasts] = useState([])
+  const { setStateLoading } = useLoadingContext()
 
   useEffect(() => {
+    setStateLoading(true)
     const storedPodcasts = localStorage.getItem('podcasts')
     const storedTimestamp = localStorage.getItem('timestamp')
 
@@ -21,7 +20,11 @@ const useGetAllPodcast = () => {
       const hoursDiff = getHoursDiff(timestamp, currentTimestamp)
 
       if (hoursDiff < 24) {
-        setPodcasts(parsedPodcasts)
+        setTimeout(() => {
+          setStateLoading(false)
+          setPodcasts(parsedPodcasts)
+        }, 500)
+
         return
       }
     }
@@ -35,9 +38,8 @@ const useGetAllPodcast = () => {
       .catch(error => {
         console.log(`Error getting podcasts: ${error}`)
       })
-  }, [])
-  setStateLoading(false)
-  console.log(isLoading)
+      .finally(() => setStateLoading(false))
+  }, [setStateLoading])
 
   return podcasts
 }

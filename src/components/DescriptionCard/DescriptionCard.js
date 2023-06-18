@@ -18,7 +18,7 @@ const DescriptionCard = ({ podcast }) => {
   return (
 
     <div className={styles.card}>
-      <div className={styles.card_image}>
+      <div className={styles.cardImage}>
         <img
           src={podcast?.image}
           alt={podcast?.name}
@@ -27,13 +27,13 @@ const DescriptionCard = ({ podcast }) => {
         />
       </div>
       <Divider />
-      <div className={styles.card_description} onClick={() => handleclick(podcast)}>
-        <h2 className={styles.card_name} style={style}>{podcast?.name} </h2>
-        <p className={styles.card_author} style={style}>by {podcast?.author}</p>
+      <div className={styles.cardDescription} onClick={() => handleclick(podcast)}>
+        <h2 className={styles.cardName} style={style}>{podcast?.name} </h2>
+        <p className={styles.cardAuthor} style={style}>by {podcast?.author}</p>
       </div>
       <Divider />
-      <div className={styles.card_description}>
-        <p className={styles.title_description}>Description:</p>
+      <div className={styles.cardDescription}>
+        <p className={styles.titleDescription}>Description:</p>
         <p className={styles.description}>{podcast?.description}</p>
       </div>
     </div>

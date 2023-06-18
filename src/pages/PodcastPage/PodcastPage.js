@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import useGetPodcastById from '../../hook/useGetPodcastById'
 import { useParams, useNavigate } from 'react-router-dom'
 import styles from './podcastPage.module.css'
 import useGetAllPodcast from '../../hook/useGetAllPodcast'
@@ -21,17 +20,19 @@ const PodcastPage = () => {
   const handleEpisode = (episodeId) => {
     navigate(`/podcast/${podcastId}/episode/${episodeId}`)
   }
-  // const podcast = useGetPodcastById(podcastId)
 
   return (
     <div className={styles.container}>
       <DescriptionCard podcast={singlePodcast} />
-      <div className={styles.container_episodes}>
+      <div className={styles.containerEpisodes}>
         <div className={styles.length}>
-          <h3>Episodes:</h3>
+          <h3 className={styles.titleEpisode}>Episodes:</h3>
           <h3>{episodes.length}</h3>
         </div>
-        <Table handleEpisode={handleEpisode} episodes={episodes} />
+        <div className={styles.tableContainer}>
+          <Table handleEpisode={handleEpisode} episodes={episodes} />
+        </div>
+
       </div>
     </div>
   )

@@ -14,17 +14,17 @@ const PodcastList = ({ podcast }) => {
   return (
 
     <div className={styles.card}>
-      <div className={styles.card_image}>
+      <div className={styles.cardImage}>
         <img
           src={podcast?.image}
           alt={podcast?.name}
           onClick={() => handleclick(podcast)}
-          className={styles.img_card}
+          className={styles.imgCard}
         />
       </div>
-      <div className={styles.card_description} onClick={() => handleclick(podcast)}>
-        <h2 className={styles.card_name}>{podcast?.name}</h2>
-        <p className={styles.card_author}>Author: {podcast?.author}</p>
+      <div className={styles.cardDescription} onClick={() => handleclick(podcast)}>
+        <h2 className={styles.cardName}>{podcast?.name}</h2>
+        <p className={styles.cardAuthor}>Author: {podcast?.author}</p>
       </div>
     </div>
 

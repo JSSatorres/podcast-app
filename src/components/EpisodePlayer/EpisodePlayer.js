@@ -1,6 +1,10 @@
 import React from 'react'
 import styles from './episodePlayer.module.css'
 
+// al notener acceso a CORS no he metido ningun mp3
+// para suministrar datos al src estando episode?.audioFile
+// vacio sin poder reproducirse nada
+
 const EpisodePlayer = ({ episode }) => {
   return (
     <div>

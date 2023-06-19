@@ -4,15 +4,25 @@ import styles from './podcastPage.module.css'
 import useGetAllPodcast from '../../hook/useGetAllPodcast'
 import DescriptionCard from '../../components/DescriptionCard'
 import Table from '../../components/Table'
-import { episodes } from '../../utils/constants'
+import useGetPodcastById from '../../hook/useGetPodcastById'
 
 const PodcastPage = () => {
   const [singlePodcast, setSinglePodcast] = useState(null)
   const { podcastId } = useParams()
-  const podcasts = useGetAllPodcast()
   const navigate = useNavigate()
+  const podcasts = useGetAllPodcast()
+
+  // realmete del hook useGetPodcastById vendria un objeto
+  // con la informacion del Podcast y sus episodios
+  // al hacerlo asi es para continuar a pesa de poder
+  // evitar la restriccion CORS
+  const episodes = useGetPodcastById(podcastId)
 
   useEffect(() => {
+    // busco el podcast en el los podcast que tengo guardados en
+    // localStorage pero no seria necesario ya lo tendria en el hook
+    // que tengo cmentado arriba
+
     const foundPodcast = podcasts.find(podcast => podcast.id === podcastId)
     setSinglePodcast(foundPodcast)
   }, [podcastId, podcasts])

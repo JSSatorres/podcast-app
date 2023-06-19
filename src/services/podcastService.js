@@ -15,9 +15,8 @@ export const getPodcastById = async (podcastId) => {
     const podcast = {
       id: podcastD?.trackId,
       name: podcastD?.trackName,
-      feedUrl: podcastD?.feedUrl,
-      artistName: podcastD?.artistName,
-      artwork: podcastD?.artworkUrl600
+      artist: podcastD?.artistName,
+      episodes: podcastD?.episodes
     }
 
     return podcast

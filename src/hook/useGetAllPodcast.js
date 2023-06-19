@@ -9,8 +9,6 @@ const useGetAllPodcast = () => {
   const { dispatch } = useLoadingContext()
 
   useEffect(() => {
-    // setStateLoading(true)
-
     dispatch({ type: ACTIONS.SET_LOADING, payload: true })
     const storedPodcasts = localStorage.getItem('podcasts')
     const storedTimestamp = localStorage.getItem('timestamp')
@@ -25,10 +23,8 @@ const useGetAllPodcast = () => {
       if (hoursDiff < 24) {
         setTimeout(() => {
           dispatch({ type: ACTIONS.SET_LOADING, payload: false })
-          // setStateLoading(false)
           setPodcasts(parsedPodcasts)
         }, 500)
-
         return
       }
     }
@@ -43,7 +39,6 @@ const useGetAllPodcast = () => {
         console.log(`Error getting podcasts: ${error}`)
       })
       .finally(() => dispatch({ type: ACTIONS.SET_LOADING, payload: false }))
-      // .finally(() => setStateLoading(false))
   }, [dispatch])
 
   return podcasts

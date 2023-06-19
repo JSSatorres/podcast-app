@@ -4,7 +4,7 @@ import { ACTIONS } from '../utils/constants'
 export const LoadingContext = createContext()
 
 const initialState = {
-  isLoading: false
+  isLoading: true
 }
 
 const reducer = (state, action) => {

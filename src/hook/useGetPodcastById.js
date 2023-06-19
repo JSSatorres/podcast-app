@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getPodcastById } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
-import { episodes } from '../utils/constants'
+import { episodes, ACTIONS } from '../utils/constants'
+import { useLoadingContext } from './useLoadingContext'
 
 const useGetPodcastById = (id) => {
   const [podcastById, setPodcastById] = useState([])
+  const { dispatch } = useLoadingContext()
 
   useEffect(() => {
     const storedPodcastsId = localStorage.getItem(id)
     const storedTimestampId = localStorage.getItem(`${id}-timestamp`)
 
     if (storedPodcastsId && storedTimestampId) {
+      dispatch({ type: ACTIONS.SET_LOADING, payload: true })
       const parsedPodcasts = JSON.parse(storedPodcastsId)
       const timestamp = new Date(storedTimestampId)
 
@@ -19,6 +22,7 @@ const useGetPodcastById = (id) => {
 
       if (hoursDiff < 24) {
         setPodcastById(parsedPodcasts)
+        dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         return
       }
     }
@@ -35,7 +39,8 @@ const useGetPodcastById = (id) => {
         // de CORS y pode continuar con la prueba
         setPodcastById(episodes)
       })
-  }, [id])
+      .finally(() => dispatch({ type: ACTIONS.SET_LOADING, payload: false }))
+  }, [id, dispatch])
 
   return podcastById
 }

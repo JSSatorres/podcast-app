@@ -14,7 +14,7 @@ const Header = () => {
             Podcaster
           </Link>
         </div>
-        {state && <div data-testid='loading-circle' className={styles.circle} />}
+        {state.isLoading && <div data-testid='loading-circle' className={styles.circle} />}
       </div>
       <div className={styles.line} />
     </header>

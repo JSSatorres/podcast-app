@@ -1,7 +1,6 @@
 import { URL_PODCAST_ALL, URL_PODCAST_BY_ID, CORS_ACCESS } from '../utils/constants'
 
 export const getPodcastById = async (podcastId) => {
-  console.log(podcastId)
   try {
     const response = await fetch(`${CORS_ACCESS}${URL_PODCAST_BY_ID}${podcastId}`, {
       headers: {

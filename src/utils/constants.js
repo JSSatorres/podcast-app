@@ -22,3 +22,7 @@ export const episodes = [
 export const episode = {
   id: 1, title: 'Wilco - Magnetized', description: 'Game devs LOVE Parsec. 3D modeling, concept art, demos, and events remotely—with no lag and perfect visuals for you, your players, and the press. High performance remote desktop with 4:4:4 color, peripheral support, and near-zero latency from anywhere.'
 }
+
+export const ACTIONS = {
+  SET_LOADING: 'SET_LOADING'
+}

@@ -4,7 +4,7 @@ import styles from './header.module.css'
 import { useLoadingContext } from '../../hook/useLoadingContext'
 
 const Header = () => {
-  const { isLoading } = useLoadingContext()
+  const { state } = useLoadingContext()
 
   return (
     <header className={styles.header}>
@@ -14,7 +14,7 @@ const Header = () => {
             Podcaster
           </Link>
         </div>
-        {isLoading && <div data-testid='loading-circle' className={styles.circle} />}
+        {state && <div data-testid='loading-circle' className={styles.circle} />}
       </div>
       <div className={styles.line} />
     </header>

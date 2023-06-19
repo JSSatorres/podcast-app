@@ -1,18 +1,31 @@
-import React, { createContext, useCallback, useState } from 'react'
+import React, { createContext, useReducer } from 'react'
+import { ACTIONS } from '../utils/constants'
 
 export const LoadingContext = createContext()
 
-export const LoadingProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState()
+const initialState = {
+  isLoading: false
+}
 
-  const setStateLoading = useCallback((value) => {
-    setTimeout(() => {
-      setIsLoading(value)
-    }, 1000)
-  }, [])
+const reducer = (state, action) => {
+  if (action.type === ACTIONS.SET_LOADING) {
+    return {
+      isLoading: action.payload
+    }
+  }
+  return state
+}
+
+export const LoadingProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const contextValue = {
+    state,
+    dispatch
+  }
 
   return (
-    <LoadingContext.Provider value={{ isLoading, setStateLoading }}>
+    <LoadingContext.Provider value={contextValue}>
       {children}
     </LoadingContext.Provider>
   )

@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react'
 import { getAllPodcasts } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
 import { useLoadingContext } from './useLoadingContext'
+import { ACTIONS } from '../utils/constants'
 
 const useGetAllPodcast = () => {
   const [podcasts, setPodcasts] = useState([])
-  const { setStateLoading } = useLoadingContext()
+  const { dispatch } = useLoadingContext()
 
   useEffect(() => {
-    setStateLoading(true)
+    // setStateLoading(true)
+
+    dispatch({ type: ACTIONS.SET_LOADING, payload: true })
     const storedPodcasts = localStorage.getItem('podcasts')
     const storedTimestamp = localStorage.getItem('timestamp')
 
@@ -21,7 +24,8 @@ const useGetAllPodcast = () => {
 
       if (hoursDiff < 24) {
         setTimeout(() => {
-          setStateLoading(false)
+          dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+          // setStateLoading(false)
           setPodcasts(parsedPodcasts)
         }, 500)
 
@@ -38,8 +42,9 @@ const useGetAllPodcast = () => {
       .catch(error => {
         console.log(`Error getting podcasts: ${error}`)
       })
-      .finally(() => setStateLoading(false))
-  }, [setStateLoading])
+      .finally(() => dispatch({ type: ACTIONS.SET_LOADING, payload: false }))
+      // .finally(() => setStateLoading(false))
+  }, [dispatch])
 
   return podcasts
 }

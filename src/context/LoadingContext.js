@@ -1,17 +1,23 @@
 import React, { createContext, useReducer } from 'react'
 import { ACTIONS } from '../utils/constants'
 
-export const LoadingContext = createContext()
+export const LoadingContextState = createContext()
+export const LoadingContextDispatch = createContext()
 
 const initialState = {
   isLoading: true
 }
 
+const setLoading = (state, payload) => {
+  return {
+    ...state,
+    isLoading: payload
+  }
+}
+
 const reducer = (state, action) => {
   if (action.type === ACTIONS.SET_LOADING) {
-    return {
-      isLoading: action.payload
-    }
+    return setLoading(state, action.payload)
   }
   return state
 }
@@ -19,14 +25,11 @@ const reducer = (state, action) => {
 export const LoadingProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const contextValue = {
-    state,
-    dispatch
-  }
-
   return (
-    <LoadingContext.Provider value={contextValue}>
-      {children}
-    </LoadingContext.Provider>
+    <LoadingContextState.Provider value={state}>
+      <LoadingContextDispatch.Provider value={dispatch}>
+        {children}
+      </LoadingContextDispatch.Provider>
+    </LoadingContextState.Provider>
   )
 }

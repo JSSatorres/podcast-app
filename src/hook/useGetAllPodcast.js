@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { getAllPodcasts } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
-import { useLoadingContext } from './useLoadingContext'
 import { ACTIONS } from '../utils/constants'
+import { useLoadingContextDispatch } from './useLoadingContexDispatch'
 
 const useGetAllPodcast = () => {
   const [podcasts, setPodcasts] = useState([])
-  const { dispatch } = useLoadingContext()
+  const dispatch = useLoadingContextDispatch()
 
   useEffect(() => {
     dispatch({ type: ACTIONS.SET_LOADING, payload: true })
-    const storedPodcasts = localStorage.getItem('podcasts')
-    const storedTimestamp = localStorage.getItem('timestamp')
+
+    const storedPodcasts = localStorage.getItem('Allpodcasts')
+    const storedTimestamp = localStorage.getItem('AllPodcatsTimestamp')
 
     if (storedPodcasts && storedTimestamp) {
       const parsedPodcasts = JSON.parse(storedPodcasts)
@@ -21,10 +22,8 @@ const useGetAllPodcast = () => {
       const hoursDiff = getHoursDiff(timestamp, currentTimestamp)
 
       if (hoursDiff < 24) {
-        setTimeout(() => {
-          dispatch({ type: ACTIONS.SET_LOADING, payload: false })
-          setPodcasts(parsedPodcasts)
-        }, 500)
+        dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+        setPodcasts(parsedPodcasts)
         return
       }
     }
@@ -32,8 +31,8 @@ const useGetAllPodcast = () => {
     getAllPodcasts()
       .then(data => {
         setPodcasts(data)
-        localStorage.setItem('podcasts', JSON.stringify(data))
-        localStorage.setItem('timestamp', new Date())
+        localStorage.setItem('Allpodcasts', JSON.stringify(data))
+        localStorage.setItem('AllPodcatsTimestamp', new Date())
       })
       .catch(error => {
         console.log(`Error getting podcasts: ${error}`)

@@ -1,9 +1,9 @@
 import React from 'react'
-import PodcastList from '../../components/PodcasrList/PodcastList'
+import PodcastsList from '../../components/PodcastsList'
 const Home = () => {
   return (
     <>
-      <PodcastList />
+      <PodcastsList />
     </>
   )
 }

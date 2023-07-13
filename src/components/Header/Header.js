@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './header.module.css'
-import { useLoadingContext } from '../../hook/useLoadingContext'
+import { useLoadingContextState } from '../../hook/useLoadingContextState'
 
 const Header = () => {
-  const { state } = useLoadingContext()
+  const state = useLoadingContextState()
 
   return (
     <header className={styles.header}>

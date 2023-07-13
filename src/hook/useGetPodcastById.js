@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import { getPodcastById } from '../services/podcastService'
 import { getHoursDiff } from '../utils/getDifHours'
-import { episodes, ACTIONS } from '../utils/constants'
-import { useLoadingContext } from './useLoadingContext'
+// import { episodes, ACTIONS } from '../utils/constants'
+import { ACTIONS } from '../utils/constants'
+import { useLoadingContextDispatch } from './useLoadingContexDispatch'
 
 const useGetPodcastById = (id) => {
   const [podcastById, setPodcastById] = useState([])
-  const { dispatch } = useLoadingContext()
+  const dispatch = useLoadingContextDispatch()
 
   useEffect(() => {
-    const storedPodcastsId = localStorage.getItem(id)
-    const storedTimestampId = localStorage.getItem(`${id}-timestamp`)
+    dispatch({ type: ACTIONS.SET_LOADING, payload: true })
+    const storedPodcastsId = localStorage.getItem(`Podcast-${id}`)
+    const storedTimestampId = localStorage.getItem(`Podcast-${id}-Timestamp`)
 
     if (storedPodcastsId && storedTimestampId) {
-      dispatch({ type: ACTIONS.SET_LOADING, payload: true })
       const parsedPodcasts = JSON.parse(storedPodcastsId)
       const timestamp = new Date(storedTimestampId)
 
@@ -22,7 +23,11 @@ const useGetPodcastById = (id) => {
 
       if (hoursDiff < 24) {
         setPodcastById(parsedPodcasts)
-        dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+
+        // Añado un setTimeout para que se vea el indicador de carga del componente header
+        setTimeout(() => {
+          dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+        }, '300')
         return
       }
     }
@@ -30,14 +35,11 @@ const useGetPodcastById = (id) => {
     getPodcastById(id)
       .then(data => {
         setPodcastById(data)
-        localStorage.setItem(id, JSON.stringify(data))
-        localStorage.setItem(`${id}-timestamp`, new Date())
+        localStorage.setItem(`Podcast-${id}`, JSON.stringify(data))
+        localStorage.setItem(`Podcast-${id}-Timestamp`, new Date())
       })
       .catch(error => {
         console.log(`Error getting podcasts: ${error}`)
-        // aqui seteo los episodios para saltarme la restriccion
-        // de CORS y pode continuar con la prueba
-        setPodcastById(episodes)
       })
       .finally(() => dispatch({ type: ACTIONS.SET_LOADING, payload: false }))
   }, [id, dispatch])

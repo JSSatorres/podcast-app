@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import PodcastList from './PodcastList'
+import PodcastsList from './PodcastsList'
 
 jest.mock('../../hook/useGetAllPodcast', () => () => [
   { id: 1, name: 'Podcast 1', author: 'Author 1' },
@@ -9,11 +9,11 @@ jest.mock('../../hook/useGetAllPodcast', () => () => [
   { id: 3, name: 'Podcast 3', author: 'Author 3' }
 ])
 
-describe('PodcastList', () => {
+describe('PodcastsList', () => {
   it('renders the list of podcasts', async () => {
     render(
       <MemoryRouter>
-        <PodcastList />
+        <PodcastsList />
       </MemoryRouter>
     )
     await waitFor(() => {

@@ -4,7 +4,7 @@ import PodcastCard from '../PodcastCard/PodcastCard'
 import usePodcasts from '../../hook/useGetAllPodcast'
 import Search from '../Search/Search'
 
-const PodcastList = () => {
+const PodcastsList = () => {
   const [search, setSearch] = useState('')
   const podcasts = usePodcasts()
 
@@ -29,4 +29,4 @@ const PodcastList = () => {
   )
 }
 
-export default PodcastList
+export default PodcastsList

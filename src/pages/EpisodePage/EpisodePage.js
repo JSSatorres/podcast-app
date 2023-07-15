@@ -7,23 +7,28 @@ import EpisodeInfo from '../../components/EpisodeInfo'
 import Divider from '../../components/Divider'
 import EpisodePlayer from '../../components/EpisodePlayer'
 
-// Directamente lo traigo desde una archivo de contantes
-// pero seria igual el funcionamiento que en la PodcastPage
-// Lo hago para terminar con ele ejercicio saltandome
-// las restricciones de cors
-import { episode } from '../../utils/constants'
-// episode seria desde el hook de obtener por id que vendria toda la
-// informacion para rellenar los componentes siguientes
+// import { episode } from '../../utils/constants'
+import useGetPodcastById from '../../hook/useGetPodcastById'
+import useGetEpisode from '../../hook/useGetEpisode'
 
 const EpisodePage = () => {
+  const { podcastId, episodeId } = useParams()
   const podcasts = useGetAllPodcast()
+  const podcastById = useGetPodcastById(podcastId)
   const [singlePodcast, setSinglePodcast] = useState(null)
-  const { podcastId } = useParams()
+  const [episode, setEpisode] = useState(null)
+  const episodes = useGetEpisode(podcastById?.episodesUrl, podcastById?.name)
 
   useEffect(() => {
     const foundPodcast = podcasts.find(podcast => podcast.id === podcastId)
     setSinglePodcast(foundPodcast)
-  }, [podcastId, podcasts])
+
+    let foundEpiosde
+    if (episodes.length > 0) {
+      foundEpiosde = episodes.find(episodeElemetn => episodeElemetn.id === episodeId)
+      setEpisode(foundEpiosde)
+    }
+  }, [podcastId, podcasts, episodeId, episodes])
 
   return (
     <div className={styles.container}>

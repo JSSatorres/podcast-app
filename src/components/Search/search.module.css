@@ -1,7 +1,10 @@
 .searchContainer {
   display: flex;
-  justify-content: end;
+  justify-content:flex-end;
   align-items: center;
+  position: sticky;
+  top: -9px;
+  z-index: 4;
 }
 
 .searchTitle {

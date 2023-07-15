@@ -16,7 +16,7 @@
 
 .length {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   height: 2rem;
   align-items: center;
   box-shadow: var(--box-shadow-thin);

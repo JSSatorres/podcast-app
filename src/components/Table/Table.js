@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './table.module.css'
+import { formatDate, formatDuration } from '../../utils/timesUtils'
 
 const Table = ({ episodes, handleEpisode }) => {
   return (
@@ -12,11 +13,13 @@ const Table = ({ episodes, handleEpisode }) => {
         </tr>
       </thead>
       <tbody>
-        {episodes.map((episode, index) => (
-          <tr key={index} onClick={() => handleEpisode(episode.id)}>
-            <td className={styles.title}>{episode.title}</td>
-            <td>{episode.date}</td>
-            <td className={styles.centerAlign}>{episode.duration}</td>
+        {episodes && episodes.map((episode, index) => (
+          <tr
+            key={index} onClick={() => handleEpisode(episode?.id)}
+          >
+            <td className={styles.title}>{episode?.title}</td>
+            <td>{formatDate(episode.date)}</td>
+            <td className={styles.centerAlign}>{formatDuration(episode?.duration)}</td>
           </tr>
         ))}
       </tbody>

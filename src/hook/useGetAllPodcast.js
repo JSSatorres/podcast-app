@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAllPodcasts } from '../services/podcastService'
-import { getHoursDiff } from '../utils/getDifHours'
-import { ACTIONS } from '../utils/constants'
+import { getHoursDiff } from '../utils/timesUtils'
+import { ACTIONS, KEY_LOCALSTORAGE } from '../utils/constants'
 import { useLoadingContextDispatch } from './useLoadingContexDispatch'
 
 const useGetAllPodcast = () => {
@@ -10,9 +10,8 @@ const useGetAllPodcast = () => {
 
   useEffect(() => {
     dispatch({ type: ACTIONS.SET_LOADING, payload: true })
-
-    const storedPodcasts = localStorage.getItem('Allpodcasts')
-    const storedTimestamp = localStorage.getItem('AllPodcatsTimestamp')
+    const storedPodcasts = localStorage.getItem(KEY_LOCALSTORAGE.AllPODCASTS)
+    const storedTimestamp = localStorage.getItem(`${KEY_LOCALSTORAGE.AllPODCASTS}-${KEY_LOCALSTORAGE.TIMESTAMP}`)
 
     if (storedPodcasts && storedTimestamp) {
       const parsedPodcasts = JSON.parse(storedPodcasts)
@@ -22,8 +21,10 @@ const useGetAllPodcast = () => {
       const hoursDiff = getHoursDiff(timestamp, currentTimestamp)
 
       if (hoursDiff < 24) {
-        dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         setPodcasts(parsedPodcasts)
+        setTimeout(() => {
+          dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+        }, 300)
         return
       }
     }
@@ -31,15 +32,14 @@ const useGetAllPodcast = () => {
     getAllPodcasts()
       .then(data => {
         setPodcasts(data)
-        localStorage.setItem('Allpodcasts', JSON.stringify(data))
-        localStorage.setItem('AllPodcatsTimestamp', new Date())
+        localStorage.setItem(KEY_LOCALSTORAGE.AllPODCASTS, JSON.stringify(data))
+        localStorage.setItem(`${KEY_LOCALSTORAGE.AllPODCASTS}-${KEY_LOCALSTORAGE.TIMESTAMP}`, new Date())
       })
       .catch(error => {
         console.log(`Error getting podcasts: ${error}`)
       })
-      .finally(() => dispatch({ type: ACTIONS.SET_LOADING, payload: false }))
   }, [dispatch])
-
+  console.log(podcasts)
   return podcasts
 }
 

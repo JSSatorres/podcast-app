@@ -7,7 +7,7 @@ const DescriptionCard = ({ podcast }) => {
   const navigate = useNavigate()
   const { episodeId } = useParams()
 
-  const handleclick = (podcast) => {
+  const handleclick = () => {
     if (episodeId) {
       navigate(-1)
     }
@@ -22,7 +22,7 @@ const DescriptionCard = ({ podcast }) => {
         <img
           src={podcast?.image}
           alt={podcast?.name}
-          onClick={() => handleclick(podcast)}
+          onClick={() => handleclick()}
           style={style}
         />
       </div>

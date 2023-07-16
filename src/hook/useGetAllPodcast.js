@@ -39,7 +39,6 @@ const useGetAllPodcast = () => {
         console.log(`Error getting podcasts: ${error}`)
       })
   }, [dispatch])
-  console.log(podcasts)
   return podcasts
 }
 

@@ -3,7 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './layout/Layout'
 import Home from './pages/Home'
 import PodcastPage from './pages/PodcastPage'
-import EpisodePage from './pages/EpisodePage'
+import Episode from './components/Episode'
+import EpisodeList from './components/EpisodeList'
+import NoMatchPage from './pages/NoMatchPage'
 
 const router = createBrowserRouter([
   {
@@ -16,13 +18,23 @@ const router = createBrowserRouter([
       },
       {
         path: '/podcast/:podcastId',
-        element: <PodcastPage />
-      },
-      {
-        path: '/podcast/:podcastId/episode/:episodeId',
-        element: <EpisodePage />
+        element: <PodcastPage />,
+        children: [
+          {
+            index: true,
+            element: <EpisodeList />
+          },
+          {
+            path: 'episode/:episodeId',
+            element: <Episode />
+          }
+        ]
       }
     ]
+  },
+  {
+    path: '*',
+    element: <NoMatchPage />
   }
 ])
 

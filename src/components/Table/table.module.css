@@ -3,6 +3,7 @@
   border-collapse: collapse;
   background-color:var(--color--light);
   color:var( --color-dark-text); 
+  box-sizing: border-box;
 }
 
 .tabla th,

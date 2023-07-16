@@ -3,7 +3,7 @@
   background-color:rgb(252, 252, 252) ;
   border-radius: 0.25rem;
   box-shadow: var(--box-shadow);
-  margin-left: 2%;
+  margin-left: 2rem;
   position: sticky;
   top: 3.5rem;
   height: fit-content;
